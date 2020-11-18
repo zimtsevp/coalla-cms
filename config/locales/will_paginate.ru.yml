@@ -1,0 +1,6 @@
+ru:
+  will_paginate:
+      previous_label: '<span class="visible-xs">&#9668;</span><span class="hidden-xs">&#9668;&nbsp;Назад</span>'
+      next_label: '<span class="hidden-xs">Вперед&nbsp;&#9658;</span><span class="visible-xs">&#9658;</span>'
+      page_gap: "..."
+

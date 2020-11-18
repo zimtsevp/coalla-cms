@@ -1,0 +1,35 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= @name %>_development
+  pool: 5
+  username: postgres
+  password: resolve
+  host: 127.0.0.1
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= @name %>_test
+  pool: 5
+  username: postgres
+  password: resolve
+  host: 127.0.0.1
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= @name %>_test
+  pool: 5
+  username: <%= @name %>_test
+  password: <%= generate_password %>
+  host: 127.0.0.1
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= @name %>
+  pool: 5
+  username: <%= @name %>
+  password: <%= generate_password %>
+  host: 127.0.0.1

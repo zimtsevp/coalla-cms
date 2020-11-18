@@ -1,0 +1,18 @@
+.page-header
+  %h1= <%= @class_name %>.model_name.human
+
+= actions do
+  = create_link(new_admin_<%= @instance_name %>_path)
+
+= table_for(<%= @class_name %>).content(@<%= @collection_name %>) do |t|
+
+  - t.column :title, cols: 7
+  - t.column :published_at, cols: 3, format: '%d.%m.%Y'
+  - t.column :published, cols: 1
+  - t.edit
+  - t.delete
+
+= admin_paginate @<%= @collection_name %>
+
+= actions do
+  = create_link(new_admin_<%= @instance_name %>_path)

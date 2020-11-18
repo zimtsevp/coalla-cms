@@ -1,0 +1,53 @@
+ru:
+  dashboard:
+    market: Магазин
+    category:
+      description: Управление категориями товаров
+    property:
+      description: Раздел управления свойствами товаров
+    product:
+      description: Раздел управления товарами
+
+  activerecord:
+    models:
+      market/category: Категории
+      market/property: Свойства
+      market/product: Товары
+
+    attributes:
+      market_category:
+        name: Название
+        position: Позиция
+        category: Родительская категория
+        category_id: Родительская категория
+      market/category:
+        name: Название
+        position: Позиция
+        category: Родительская категория
+        category_id: Родительская категория
+      market_property:
+        name: Название
+      market/property:
+        name: Название
+      market_product:
+        name: Название
+        sku: Артикул
+        price: Цена
+        category: Категория
+        category_id: Категория
+        description: Описание
+      market/product:
+        name: Название
+        sku: Артикул
+        price: Цена
+        category: Категория
+        category_id: Категория
+        description: Описание
+      market/product_property:
+        property: Свойство
+        property_name: Свойство
+        value: Значение
+      market/product/product_properties:
+        property: Свойство
+        property_name: Свойство
+        value: Значение

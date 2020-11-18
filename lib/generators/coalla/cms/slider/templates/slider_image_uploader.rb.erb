@@ -1,0 +1,7 @@
+class <%= @uploader_name %> < GenericImageUploader
+
+  version :thumb do
+    resize_to_fill 80, 80
+  end
+
+end

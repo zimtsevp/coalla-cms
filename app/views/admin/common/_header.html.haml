@@ -1,0 +1,28 @@
+%header.navbar.navbar-inverse.navbar-fixed-top{role: 'banner'}
+  .navbar-header
+    %button.navbar-toggle{type: 'button', data:{toggle: 'collapse', target: '#navbar-collapse'}}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    = link_to t('admin.common.main_page'), root_path, class: 'navbar-brand'
+
+  #navbar-collapse.navbar-collapse.collapse
+    %nav.nav.navbar-nav.side-nav{role: "navigation"}
+      = render 'admin/common/menu'
+
+    %ul.nav.navbar-nav.navbar-right
+      %li
+        %p.navbar-text
+          = t('admin.common.logged_in_as')
+          &nbsp;
+          = link_to '#', class: 'navbar-link' do
+            %i.glyphicon.glyphicon-user
+            &nbsp;
+            = current_administrator.email
+      %li
+        = link_to destroy_administrator_session_path, method: Devise.sign_out_via, class: 'navbar-link' do
+          %i.glyphicon.glyphicon-log-out
+          &nbsp;
+          = t('admin.auth.sign_out')
+

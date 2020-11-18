@@ -1,0 +1,27 @@
+en:
+  admin:
+    title: Admin panel
+    auth:
+      title: Authorization
+      sign_in: Sign in
+      sign_out: Sign out
+    common:
+      logged_in_as: You logged in as
+      main_page: Home
+      dashboard: Dashboard
+      new: New
+      edit: Edit
+      delete: Delete
+      actions: Actions
+      cancel: Cancel
+      return: Return
+      sure: Are you sure?
+      sort: Sort
+      sort_title: You can drag rows in a table
+      save: Save
+      apply: Apply
+      upload: Upload
+      save_success: Info was saved successfully
+    form:
+      edit: Edit
+      new: New

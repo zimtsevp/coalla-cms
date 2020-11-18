@@ -1,0 +1,27 @@
+ru:
+  admin:
+    title: Административная панель
+    auth:
+      title: Авторизация
+      sign_in: Войти
+      sign_out: Выход
+    common:
+      logged_in_as: Вы вошли как
+      main_page: Главная
+      dashboard: Сводка
+      new: Добавить
+      edit: Редактировать
+      delete: Удалить
+      actions: Действия
+      cancel: Отменить
+      return: Вернуться
+      sure: Вы уверены?
+      sort: Сортировать
+      sort_title: Вы можете перетаскивать строки в таблице
+      save: Сохранить
+      apply: Применить
+      upload: Загрузить
+      save_success: Информация успешно сохранена
+    form:
+      edit: Редактирование
+      new: Добавление

@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      administrator: Administrators
+      lookup: Settings
+    structure:
+      administrator: Administrators list management
+
+    attributes:
+      administrator:
+        email: Email
+        password: Password
+      lookup:
+        code: Name
+        value: Value
+

@@ -1,0 +1,10 @@
+class <%= name %> < ActiveRecord::Base
+
+    validates_presence_of :title, :published_at, :announce, :announce_image, :body
+
+    mount_uploader :announce_image, <%= @announce_image_uploader_name %>
+
+    scope :ordered, -> { order('created_at DESC')}
+    scope :feed, -> { where(published: true).order('published_at DESC') }
+
+end

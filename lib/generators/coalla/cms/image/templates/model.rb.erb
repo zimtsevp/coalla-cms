@@ -1,0 +1,5 @@
+class <%= name %> < ActiveRecord::Base
+
+  mount_uploader :image, <%= name %>Uploader<%= @prefixed? ", prefixed: true" : "" %>
+
+end

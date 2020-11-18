@@ -1,0 +1,6 @@
+class Add<%= @image_field.camelize %>FieldTo<%= @class_name.pluralize %> < ActiveRecord::Migration
+  def change
+    add_column :<%= @class_name.constantize.table_name %>, :<%= @image_field %>, :text<% @properties.each do |name, type|  %>
+    add_column :<%= @class_name.constantize.table_name %>, :<%= @prefixed ? @image_field + "_" : "" %><%= name %>, :<%= type %><% end %>
+  end
+end

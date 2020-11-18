@@ -1,0 +1,7 @@
+- @slides.each do |slide|
+  :plain
+    $(injectNewSliderId(template_#{slide.slider_type}_#{@master_object_id}, new Date().getTime()))
+      .find('.image-preview').attr('src', '#{slide.image_url(:thumb)}').end()
+      .find('.image_cache').val('#{slide.image_cache}').end()
+      .find('.slide_title').attr('id', 'slide_image_' + new Date().getTime()).end()
+      .appendTo('[data-object=#{@master_object_id}][data-slider=#{slide.slider_type}]');

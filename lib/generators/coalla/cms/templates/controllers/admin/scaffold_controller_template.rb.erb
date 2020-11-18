@@ -1,0 +1,45 @@
+module Admin
+
+  class <%= name.camelize.pluralize %>Controller < BaseController
+
+    PER_PAGE = 20
+
+    def index
+      @<%= @collection_name %> = <%= @class_name %>.order(created_at: :desc).paginate(page: params[:page], per_page: PER_PAGE)
+    end
+
+    def new
+      @<%= @instance_name %> = <%= @class_name %>.new
+    end
+
+    def create
+      @<%= @instance_name %> = <%= @class_name %>.new(params[:<%= @instance_name %>].permit!)
+      if @<%= @instance_name %>.save
+      redirect_or_render :edit
+      else
+        render :new
+      end
+    end
+
+    def edit
+      @<%= @instance_name %> = <%= @class_name %>.find(params[:id])
+    end
+
+    def update
+      @<%= @instance_name %> = <%= @class_name %>.find(params[:id])
+      if @<%= @instance_name %>.update_attributes(params[:<%= @instance_name %>].permit!)
+      redirect_or_render :edit
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @<%= @instance_name %> = <%= @class_name %>.find(params[:id])
+      @<%= @instance_name %>.destroy
+      redirect_to_last
+    end
+
+  end
+
+end

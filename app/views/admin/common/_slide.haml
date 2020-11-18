@@ -1,0 +1,41 @@
+.pictograms__i.col-lg-1.col-md-2.col-sm-3.col-xs-4{style: lb.object.marked_for_destruction? && 'display: none;', class: lb.object.errors.any? && 'error'}
+  = lb.hidden_field :id
+  = lb.hidden_field :image_cache, class: 'image_cache'
+  = lb.hidden_field :slider_type, value: slider_type
+  = lb.hidden_field :title, class: 'slide_title', id: "slide_image_#{lb.object.id}"
+  .pictograms__inner
+    = image_tag lb.object.image_url(:thumb) || 'blank.gif', size: '80x80', alt: '', class: 'image-preview img-polaroid'
+
+    - if edit_allowed
+      %span.btn.btn-default.btn-xs.pictograms__button_edit{title: 'Редактирование'}
+        %i.glyphicon.glyphicon-pencil
+
+    - if !lb.object.new_record?
+      = lb.hidden_field :_destroy
+    = link_to '#', class: 'btn btn-danger btn-xs pictograms__button_remove', data: {container: 'pictograms__i'} do
+      %i.glyphicon.glyphicon-trash
+
+:javascript
+    $('.pictograms__button_edit').popover({
+        container: 'body',
+        toggle:'popover',
+        placement:'top',
+        html:'true',
+        content: function(){
+            var
+                $title = $(this).closest('.pictograms__i').find('.slide_title');
+
+            $('.pictograms__button_edit').not(this).popover('hide');
+
+            return '<div class="slide-form-group">' +
+                        '<div class="form-group">' +
+                            '<label>Название слайда</label>' +
+                            '<input id = "' + $title.attr('id') + '" class="form-control" type="text" value="' + $title.val() + '">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<button class="btn btn-danger pull-right close-popover-form">Отмена</button>' +
+                            '<button class="btn btn-success pull-right submit-popover-form">Сохранить</button>' +
+                        '</div>' +
+                    '</div>';
+        }
+    });

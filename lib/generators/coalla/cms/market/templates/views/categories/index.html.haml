@@ -1,0 +1,17 @@
+.page-header
+  %h1= Market::Category.model_name.human
+
+= actions do
+  = create_link(new_admin_market_category_path)
+
+= table_for(Market::Category).content(@categories) do |t|
+  - t.column :name
+  - t.column :category, format: ->(category) { category.try(:name) }
+  - t.column :position
+  - t.edit
+  - t.delete
+
+= admin_paginate @categories
+
+= actions do
+  = create_link(new_admin_market_category_path)

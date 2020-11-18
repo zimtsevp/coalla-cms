@@ -1,0 +1,15 @@
+.page-header
+  %h1= Market::Property.model_name.human
+
+= actions do
+  = create_link(new_admin_market_property_path)
+
+= table_for(Market::Property).content(@properties) do |t|
+  - t.column :name
+  - t.edit
+  - t.delete
+
+= admin_paginate @properties
+
+= actions do
+  = create_link(new_admin_market_property_path)

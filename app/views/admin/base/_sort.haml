@@ -1,0 +1,34 @@
+- model_name = controller_name.classify.constantize
+.page-header
+  %h1
+    #{t('admin.common.sort')}&nbsp;
+    %small
+      #{t('admin.common.sort_title')}
+
+= form_tag action: :sort, method: :post do
+  %table.table.table-striped
+    %thead
+      %tr
+        %th.span12= model_name.human_attribute_name(attribute_name)
+    %tbody
+      - self.instance_variable_get("@#{controller_name}").each do |sortable|
+        %tr
+          = hidden_field_tag "#{controller_name}[#{sortable.id}]", sortable.id
+          %td= sortable.send(attribute_name)
+  = actions do
+    = submit_tag t('admin.common.save'), class: 'btn btn-success'
+    = cancel_action action: :index
+
+:javascript
+  $('#content tbody').sortable({
+    axis: 'y',
+    cursor: 'move',
+    helper: function(e, tr) {
+      var $originals = tr.children();
+      var $helper = tr.clone();
+      $helper.children().each(function(index) {
+        $(this).width($originals.eq(index).width())
+      });
+      return $helper;
+    }
+  }).disableSelection();

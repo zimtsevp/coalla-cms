@@ -1,0 +1,5 @@
+.fields_container{style: (builder.object.marked_for_destruction? ? 'display:none;' : 'position:relative'), class: 'well'}
+  = render partial, builder: builder
+  = builder.hidden_field :_destroy
+  = link_to '#', class: 'btn btn-danger remove_field', style:'position: absolute; top: 20px; right: 30px;' do
+    %i.glyphicon.glyphicon-trash

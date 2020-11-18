@@ -1,0 +1,10 @@
+= twitter_form_for [:admin, @category] do |f|
+  = field_set do
+    = f.errors
+    = flash_messages
+
+    = f.string :name
+    = f.string :position, div_class: 'col-md-2'
+    = f.combobox :category_id, Market::Category.for_combo(@category).map{|r| [r.full_name, r.id]}, include_blank: true
+
+  = standard_actions(f)

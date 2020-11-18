@@ -1,0 +1,9 @@
+= twitter_form_for [:admin, @property] do |f|
+  = field_set do
+    = f.errors
+    = flash_messages
+
+    = f.string :name
+    
+
+  = standard_actions(f)

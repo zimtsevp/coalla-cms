@@ -1,0 +1,15 @@
+.page-header
+  %h1= <%= @class_name.constantize %>.model_name.human
+
+= actions do
+  = create_link(new_admin_<%= @instance_name %>_path)
+
+= table_for(<%= @class_name.constantize %>).content(@<%= @collection_name %>) do |t|
+  <% @table_columns.each do |column| %><% if @reflections[column[0]] %>- t.column :<%= @reflections[column[0]].name %>, format: ->(c) { c.try(:<%= cms_select_name(@reflections[column[0]].klass) %>) }<% else %>- t.column :<%= column[0]%><% end %>
+  <% end %>- t.edit
+  - t.delete
+
+= admin_paginate @<%= @collection_name %>
+
+= actions do
+  = create_link(new_admin_<%= @instance_name %>_path)

@@ -1,0 +1,15 @@
+.page-header
+  %h1= Administrator.model_name.human
+
+= actions do
+  = create_link(new_admin_administrator_path)
+
+= table_for(Administrator).content(@administrators) do |t|
+  - t.column :email
+  - t.edit
+  - t.delete if: ->(admin) { current_administrator != admin }
+
+= admin_paginate @administrators
+
+= actions do
+  = create_link(new_admin_administrator_path)

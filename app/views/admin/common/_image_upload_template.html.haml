@@ -1,0 +1,40 @@
+- free_size = options[:free_size] || false
+- font_size = options[:font_size] ? " font-size: #{options[:font_size]}px;" : ''
+.upload-img-container{id: container, class: free_size && 'manage-size'}
+  - if url
+    .form-group
+      %label.control-label.col-md-4.col-lg-2= title
+      .col-md-8
+        - w, h = size.split('x').to_a.map(&:to_i)
+        - show_placeholder = (url == 'placeholder')
+        - txt = text || "#{w} x #{h}"
+        - common_options = {alt: '', class: 'image-preview'}
+        - common_options[:size] = size if !free_size || show_placeholder
+        .img-polaroid{style: "position: relative; width: #{w}px; height: #{h}px;", class: show_placeholder && 'init-placeholder'}
+          - image_preview_url = url
+          - image_preview_style = image_style
+          - trash_btn_style = ''
+          - placeholder_style = "height: #{h}px; line-height: #{h}px; width: #{w}px;#{font_size}"
+          - if show_placeholder
+            - image_preview_url = 'blank.gif'
+            - image_preview_style = hide_style(image_preview_style)
+            - trash_btn_style = hide_style(trash_btn_style)
+          - else
+            - placeholder_style = hide_style(placeholder_style)
+
+          .ajax-loader{data: {image_loader: true}}
+          %div.image-placeholder{style: placeholder_style, data: {image_placeholder: true}}
+            #{txt}
+          = image_tag image_preview_url, common_options.merge(style: image_preview_style).merge(data: {image_tag: true, image_preview: true})
+          = link_to '#', class: 'btn btn-danger btn-xs image__button_remove', style: trash_btn_style, data: {image_remove_btn: true, image_preview: true} do
+            %i.glyphicon.glyphicon-trash
+  .form-group
+    .col-md-4.col-lg-2
+    .col-md-8.col-lg-10
+      .custom-file{style: 'position: relative; display: inline-block; width: 140px; height: 34px; overflow: hidden;'}
+        .btn.btn-primary{style: 'position: absolute; left: 0; right: 0;'}= t('admin.common.upload')
+        = file_field_tag :image, id: nil, data: {file: true, path: upload_uri,
+          container: container, version: version, free_size: free_size},
+          style: 'position: absolute; font-size: 100px; opacity: 0; cursor: pointer;'
+  = f.hidden_field "#{field}_cache", class: 'image-cache'
+  = f.hidden_field "remove_#{field}", data: {image_remove_flag: true}

@@ -1,0 +1,13 @@
+= builder.string :property_name, div_class: 'col-md-7', class: 'property_autocomplete'
+= builder.hidden_field :property_id, class: 'property_id'
+= builder.string :value, div_class: 'col-md-7'
+
+:javascript
+  $(function() {
+      $('.property_autocomplete').autocomplete({
+          source: '#{admin_market_properties_path}',
+          select: function(event, ui) {
+            $(this).closest('.fields_container').find('.property_id').val(ui.item.id);
+          }
+      });
+  });

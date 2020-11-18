@@ -1,0 +1,22 @@
+= twitter_form_for [:admin, @meta_tags], as: :site_meta_tags, url: url_for(action: :update, id: @meta_tags.id) do |f|
+  = f.errors
+  = flash_messages
+
+  = f.static_text :identifier_text
+
+  = f.string :site
+  = f.string  :title
+  = f.textarea :description, rows: 4
+  = f.image_upload :image, version: :main, size: '500x500', upload_path: admin_upload_image_path(image_class: :site_meta_tags, field: :image)
+  = f.string  :url
+
+  = field_set 'Open Graph' do
+    = f.string :og_title
+    = f.textarea :og_description, rows: 4
+    = f.image_upload :og_image, version: :main, size: '500x500', upload_path: admin_upload_image_path(image_class: :site_meta_tags, field: :og_image)
+    = f.string :og_url
+
+  = fixed_actions do
+    = f.save
+    = cancel_action admin_meta_tags_path
+

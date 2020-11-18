@@ -1,0 +1,16 @@
+= twitter_form_for [:admin, @<%= @instance_name %>] do |f|
+  = field_set do
+    = f.errors
+    = flash_messages
+
+    = f.string :title
+
+    = f.image_upload :announce_image, version: :thumb, size: '300x200'
+    = f.textarea :announce, rows: 5
+
+    = f.wysiwyg :body
+
+    = f.checkbox :published
+    = f.datetime :published_at
+
+  = standard_actions(f)

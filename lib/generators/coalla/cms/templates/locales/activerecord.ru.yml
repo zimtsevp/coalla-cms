@@ -1,0 +1,29 @@
+ru:
+  activerecord:
+    models:
+      administrator: Администратор
+      lookup: Тексты
+      site_meta_tags: Мета-тэги
+    structure:
+      administrator: Управление списком администраторов сайта
+
+    attributes:
+      administrator:
+        email: Электронная почта
+        password: Пароль
+      lookup:
+        code: Название
+        value: Значение
+        file_name: Файл
+      site_meta_tags:
+        identifier: Идентификатор
+        identifier_text: Идентификатор страницы
+        site: Сайт
+        title: Заголовок
+        description: Описание
+        image: Изображение
+        url: URL
+        og_title: Заголовок
+        og_description: Описание
+        og_image: Изображение
+        og_url: URL

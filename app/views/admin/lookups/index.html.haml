@@ -1,0 +1,6 @@
+%h1= @category.present? ? t("lookups.category.#{@category}") : 'Тексты'
+
+= table_for(Lookup).content(@lookups) do |t|
+  - t.column :code, cols: 4, format: lambda {|e| lookup_name(e)}
+  - t.column :self, cols: 7, format: ->(lookup){ format_lookup(lookup) }, title: 'Значение'
+  - t.action :edit

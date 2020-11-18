@@ -1,0 +1,5 @@
+.page-header
+  %h1= t('admin.common.dashboard')
+.row
+  = render collection: @structure.sections, partial: 'structure/section'
+

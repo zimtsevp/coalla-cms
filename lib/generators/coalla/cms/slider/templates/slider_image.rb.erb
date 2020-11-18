@@ -1,0 +1,10 @@
+class <%= @class_name %> < ActiveRecord::Base
+
+  mount_uploader :image, <%= @uploader_name %>
+  acts_as_list scope: 'container_slider_id = #{container_slider_id} AND slider_type = \'#{slider_type}\''
+
+  def self.with_type(slider_type)
+    where(slider_type: slider_type)
+  end
+
+end

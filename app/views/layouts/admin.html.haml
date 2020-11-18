@@ -1,0 +1,44 @@
+!!!
+%html
+  %head
+    %title= t('admin.title')
+    = favicon_link_tag
+    = stylesheet_link_tag 'admin/admin', media: 'all'
+    = javascript_include_tag 'admin/admin'
+    = csrf_meta_tags
+  = yield(:head)
+  :css
+    .ajax-loader.visible { display: block; }
+    .ajax-loader {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      background: url('#{asset_url('ajax-loader.gif')}') center no-repeat;
+    }
+    .image-placeholder {
+      background: #ccc;
+      text-align: center;
+      font-size: 20px;
+    }
+%body
+  - if devise_controller?
+    = yield
+  - else
+    = render 'admin/common/header'
+    .wrapper
+      .page-wrapper#content
+        = yield
+
+    :javascript
+      $(function () {
+        PhotoUploader = new PhotoUploader('#{j(render partial: 'admin/common/upload_form')}');
+        var addUploadListener = function () {
+            PhotoUploader.addUploadListener();
+        };
+        addUploadListener();
+        window.NestedFormCallbacks = window.NestedFormCallbacks || [];
+        window.NestedFormCallbacks.push(addUploadListener);
+      });

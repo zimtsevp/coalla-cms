@@ -1,0 +1,10 @@
+- active = current_page?(item.path)
+%li{class: active && 'active'}
+  = link_to item.path do
+    %i{class: item.icon}
+    &nbsp;
+    = item.name.html_safe
+    - if item.show_menu_counter? && item.counter
+      &nbsp;
+      %span.badge.pull-right
+        = item.counter.call

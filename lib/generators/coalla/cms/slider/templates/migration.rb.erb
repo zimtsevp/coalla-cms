@@ -1,0 +1,25 @@
+class Create<%= @class_name.pluralize %> < ActiveRecord::Migration
+
+  def up
+    create_table :<%= @table_name %> do |t|
+      t.text :slider_type, null: false
+      t.text :image
+      t.text :title
+      t.text :file_name
+      t.text :content_type
+      t.integer :size
+      t.integer :width
+      t.integer :height
+      t.integer :position, :integer
+      t.integer :container_slider_id
+      t.timestamps
+    end
+    add_index :<%= @table_name %>, :position
+    add_index :<%= @table_name %>, :container_slider_id
+  end
+
+  def down
+    drop_table :<%= @table_name %>
+  end
+
+end

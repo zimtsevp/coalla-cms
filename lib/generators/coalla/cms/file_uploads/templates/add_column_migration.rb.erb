@@ -1,0 +1,5 @@
+class Add<%= @field_name.camelize %>FieldTo<%= @model_name.pluralize %> < ActiveRecord::Migration
+    def change
+        add_column :<%= @model_name.constantize.table_name %>, :<%= @field_name %>, :text
+    end
+end

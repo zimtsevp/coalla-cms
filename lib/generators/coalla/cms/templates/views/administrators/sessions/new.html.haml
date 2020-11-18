@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+      %h2= t('admin.title')
+      .page-header
+        %h3= t('admin.auth.title')
+
+      = twitter_form_for(resource, url: session_path(resource_name), width_class: 'col-md-8') do |f|
+        = flash_alert_messages
+        = f.string :email
+        = f.password :password
+
+
+        .form-group
+          .col-md-4.col-md-offset-4
+            %button.btn.btn-primary{type: "submit"}
+              %span.glyphicon.glyphicon-lock
+              &nbsp;
+              = t('admin.auth.sign_in')

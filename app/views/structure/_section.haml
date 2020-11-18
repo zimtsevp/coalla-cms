@@ -1,0 +1,17 @@
+.col-lg-4.col-md-6.col-sm-12
+  .well.well-lg
+    %h3
+      = link_to section.name.html_safe, section.path
+      - if section.counter
+        &nbsp;
+        %span.badge.badge-primary
+          = section.counter.call
+    - if section.description
+      %p= section.description
+    - if section.creation_path
+      = link_to section.creation_path, class: 'btn btn-success' do
+        %i.glyphicon.glyphicon-plus
+        &nbsp;
+        = t('admin.common.new')
+
+

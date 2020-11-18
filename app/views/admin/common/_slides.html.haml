@@ -1,0 +1,17 @@
+- object_id = form.index || 0
+- slider_type = form.object.class.slider_type(slides)
+- slider_type_prefix = slider_type.sub('::', '__')
+:javascript
+  var template_#{slider_type_prefix}_#{object_id} = '#{generate_slider_template(form, class: slider_class, collection: slides, partial: "admin/common/slide", locals: {slider_type: slider_type, edit_allowed: edit_allowed})}'
+
+%fieldset
+  %legend{style: 'margin-bottom: 40px;'}
+    = title if defined? title
+    .custom-file{style: "position: relative; display: inline-block; margin: 0 0 -9px 15px; width: 140px; height: 34px; overflow: hidden;"}
+      .btn.btn-primary{style: "position: absolute; left: 0; right: 0;"}
+        = t('admin.common.upload')
+      = file_field_tag "#{slider_type_prefix}_image[]", id: nil, multiple: multiple, data: {file: true, path: send("admin_upload_#{slider_class.to_s.underscore}_path", {slider_type: slider_type, master_object_id: object_id})},
+        style:" position: absolute; font-size: 100px; opacity: 0; cursor: pointer;"
+  .pictograms.row.sortable{data:{object:object_id, slider: slider_type}}
+    = form.fields_for slides, form.object.send("sorted_#{slides}") do |df|
+      = render 'admin/common/slide', lb: df, slider_type: slider_type, edit_allowed: edit_allowed

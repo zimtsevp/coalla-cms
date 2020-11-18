@@ -1,0 +1,35 @@
+module Admin
+
+  class BaseController < ApplicationController
+
+    layout 'admin'
+
+    include Admin::PathHistory
+    helper_method :back_uri
+
+    before_action :no_cache!
+    before_action :authenticate_administrator!
+    before_action :load_structure
+    before_action :store_path_history
+
+    protected
+
+    def load_structure
+      @structure = ::AdminStructure.new(self)
+    end
+
+    def add_success_msg
+      flash.now[:admin_success] = I18n.t('admin.common.save_success')
+    end
+
+    def redirect_or_render partial
+      if params[:save].present?
+          redirect_to_back
+      else
+          add_success_msg
+          render partial
+      end
+    end
+  end
+
+end

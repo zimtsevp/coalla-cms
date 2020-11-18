@@ -1,0 +1,15 @@
+class Create<%= name.pluralize %> < ActiveRecord::Migration
+    def change
+        create_table :<%= @table_name %> do |t|
+            t.text :title, null: false
+            t.boolean :published, null: false, default: false
+            t.datetime :published_at, null: false
+            t.text :announce, null: false
+            t.text :announce_image, null: false
+            t.text :body, null: false
+            t.timestamps
+        end
+        add_index :<%= @table_name %>, :published
+        add_index :<%= @table_name %>, :published_at
+    end
+end

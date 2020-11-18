@@ -1,0 +1,9 @@
+class Create<%= name.pluralize %> < ActiveRecord::Migration
+  def change
+    create_table :<%= name.pluralize.underscore %> do |t|
+      t.text :image<% @properties.each do |name, type|  %>
+      t.<%= type %> :<%= @prefixed ? "image_#{name}" : name %><% end %>
+      t.timestamps
+    end
+  end
+end

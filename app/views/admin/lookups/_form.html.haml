@@ -1,0 +1,10 @@
+= twitter_form_for [:admin, @lookup] do |f|
+  = f.errors
+  = flash_messages
+
+  = render "admin/lookups/types/#{@lookup.type_code}", f: f
+
+  = fixed_actions do
+    = f.save
+    = cancel_action admin_lookups_index_path(category: @lookup.category)
+

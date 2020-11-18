@@ -1,0 +1,5 @@
+%h1 Мета-тэги
+
+= table_for(SiteMetaTags).content(@meta_tags) do |t|
+  - t.column :identifier_text
+  - t.action ->(item){  edit_link(url_for(action: :edit, id: item.id))}

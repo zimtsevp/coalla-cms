@@ -1,0 +1,14 @@
+= twitter_form_for [:admin, @<%= @instance_name %>] do |f|
+  = field_set do
+    = f.errors
+    = flash_messages
+
+    <% @table_columns.each do |c| %><% if @reflections[c[0]] %>
+    .control-group
+      = f.label :<%= @reflections[c[0]].name %>_id, class: 'control-label'
+      .controls
+        = f.collection_select :<%= @reflections[c[0]].name %>_id, <%= @reflections[c[0]].klass.name %>.all, :id, :<%= cms_select_name(@reflections[c[0]].klass) %>, { include_blank: 'Выберите значение' }, { class: 'span5' }
+    <% else %>= f.string :<%= c[0] %>
+    <% end %><% end %>
+
+  = standard_actions(f)

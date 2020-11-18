@@ -1,0 +1,18 @@
+- file = f.object.send field
+- file_label = I18n.t("activerecord.attributes.#{f.object.class.model_name.singular}.#{field}_name")
+.control-group{data: {file_upload_container: true}}
+  .controls.alert.alert-info.span3
+    %p{id: "#{field}-name-label", style: 'margin-bottom: 10px;', data: {file_upload_title: true, label: file_label}}
+      - if file.file
+        = file.file.filename
+        = surround '(', ')' do
+          = number_to_human_size(file.file.size)
+      - else
+        = file_label
+
+    .custom-file{style: 'cursor: pointer; height: 34px; overflow: hidden; position: relative; width: 140px;'}
+      .btn.btn-primary{style: 'position: absolute; left: 0; right: 0;'} Загрузить
+      = f.file_field field, class: 'span5', style: 'font-size: 100px; opacity: 0; position: absolute;', data: {file_upload: true}
+    = link_to '#', class: 'btn btn-danger', style:'position: absolute; top: 20px; right: 30px;', data: {file_remove_btn: true} do
+      %i.glyphicon.glyphicon-trash
+    = f.hidden_field "remove_#{field}", data: {file_remove_flag: true}

@@ -1,0 +1,17 @@
+= twitter_form_for [:admin, @product] do |f|
+  = field_set do
+    = f.errors
+    = flash_messages
+
+    = f.string :name
+    = f.string :sku, div_class: 'col-md-2'
+    = f.string :price, div_class: 'col-md-2'
+    = f.combobox :category_id, Market::Category.for_combo(nil).map{|r| [r.full_name, r.id]}, include_blank: true
+    = f.textarea :description, rows: 3
+    = render_slides(f, 'Слайдер', :images)
+
+  = render 'admin/common/nested_fields_for', f: f, section_name: 'Свойства', collection: :product_properties
+
+  = standard_actions(f)
+
+

@@ -1,0 +1,5 @@
+- partial = "#{collection.to_s.singularize}_fields"
+= field_set section_name do
+  = f.fields_for collection do |builder|
+    = render 'admin/common/nested_fields_for_element',  builder: builder, partial: partial
+  = link_to_add_fields('Добавить', f, collection)

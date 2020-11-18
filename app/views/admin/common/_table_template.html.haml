@@ -1,0 +1,14 @@
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        - definitions.each do |column|
+          %th{class: th_class(column)}
+            = column.title
+    %tbody
+      - items.each do |item|
+        %tr{class: tr_class(row_class, item)}
+          - definitions.each do |column|
+            %td{class: td_class(column)}<
+              = column.value(item, self)
+

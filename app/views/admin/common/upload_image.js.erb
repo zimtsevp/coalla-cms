@@ -1,0 +1,6 @@
+(new function() {
+    var c = $('#<%= params[:container] %>');
+    c.find('.img-polaroid').removeClass('init-placeholder');
+    c.find('.image-cache').val('<%= @image_cache %>');
+    c.find('.image-preview').attr('src', '<%= @preview_url %>');
+})();

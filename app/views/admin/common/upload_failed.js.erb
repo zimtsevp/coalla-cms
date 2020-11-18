@@ -1,0 +1,11 @@
+(new function() {
+    alert('Ошибка загрузки!\n\n<%= @errors.join('\n') %>');
+    var $c = $('#<%= params[:container] %>');
+    if ($c.find('.img-polaroid').hasClass('init-placeholder')) {
+        $c.find('[data-image-placeholder]').show();
+    } else {
+        $c.find('[data-image-preview]').show();
+    }
+    $c.find('.ajax-loader').removeClass('visible');
+})();
+

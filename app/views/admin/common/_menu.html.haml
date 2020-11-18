@@ -1,0 +1,2 @@
+- @structure.menu_items.each do |item|
+  = render "admin/common/menu_#{item.class.name.demodulize.underscore}", item: item
